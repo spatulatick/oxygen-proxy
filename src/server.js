@@ -18,7 +18,7 @@ const server = createServer(app);
 app.use("/scram/", express.static(scramjetPath));
 app.use("/baremux/", express.static(baremuxPath));
 app.use("/epoxy/", express.static(epoxyPath));
-app.use(express.static(join(__dirname, "../public")));
+app.use(express.static(join(__dirname, "public")));
 
 server.on("upgrade", (req, socket, head) => {
   if (req.url.startsWith("/wisp/")) {
