@@ -8,9 +8,9 @@ import { dirname, join } from "path";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
+const root = join(__dirname, "..");
 
-// Point directly to the dist folder
-const epoxyPath = join(__dirname, "../node_modules/@mercuryworkshop/epoxy-transport/dist");
+const epoxyPath = join(root, "node_modules/@mercuryworkshop/epoxy-transport/dist");
 
 const app = express();
 const server = createServer(app);
@@ -18,7 +18,7 @@ const server = createServer(app);
 app.use("/scram/", express.static(scramjetPath));
 app.use("/baremux/", express.static(baremuxPath));
 app.use("/epoxy/", express.static(epoxyPath));
-app.use(express.static(join(__dirname, "public")));
+app.use(express.static(join(root, "public")));
 
 server.on("upgrade", (req, socket, head) => {
   if (req.url.startsWith("/wisp/")) {
